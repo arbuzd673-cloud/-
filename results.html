@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Диняндкс - Результаты поиска">
+    <title>Результаты поиска - Диняндкс</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="results-page-body">
+    <!-- Header -->
+    <header class="results-header">
+        <div class="header-content">
+            <!-- Logo -->
+            <a href="index.html" class="header-logo" aria-label="На главную Диняндкс">
+                <span class="logo-small">
+                    <span class="logo-letter logo-d">Д</span><span class="logo-letter logo-i">и</span><span class="logo-letter logo-n">н</span><span class="logo-letter logo-y">я</span><span class="logo-letter logo-n2">н</span><span class="logo-letter logo-d2">д</span><span class="logo-letter logo-k">к</span><span class="logo-letter logo-s">с</span>
+                </span>
+            </a>
+            
+            <!-- Search Form -->
+            <form class="header-search-form" id="searchForm" action="results.html" method="GET" role="search">
+                <div class="search-container header-search-container">
+                    <div class="search-input-wrapper">
+                        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        
+                        <input 
+                            type="text" 
+                            class="search-input" 
+                            id="searchInput" 
+                            name="q" 
+                            placeholder="Искать в Диняндкс"
+                            autocomplete="off"
+                            aria-label="Поисковый запрос"
+                            aria-autocomplete="list"
+                            aria-controls="autocompleteDropdown"
+                        >
+                        
+                        <button type="button" class="clear-btn" id="clearBtn" aria-label="Очистить поиск" hidden>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                            </svg>
+                        </button>
+                        
+                        <button type="button" class="voice-btn" id="voiceBtn" aria-label="Голосовой поиск">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                                <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                                <line x1="12" y1="19" x2="12" y2="23"></line>
+                                <line x1="8" y1="23" x2="16" y2="23"></line>
+                            </svg>
+                        </button>
+                    </div>
+                    
+                    <!-- Autocomplete Dropdown -->
+                    <div class="autocomplete-dropdown" id="autocompleteDropdown" role="listbox" hidden>
+                        <div class="autocomplete-section" id="historySection">
+                            <div class="autocomplete-header">
+                                <span>Недавние поиски</span>
+                                <button type="button" class="clear-history-btn" id="clearHistoryBtn">Очистить</button>
+                            </div>
+                            <ul class="autocomplete-list" id="historyList" role="group" aria-label="Недавние поиски"></ul>
+                        </div>
+                        <div class="autocomplete-section" id="suggestionsSection">
+                            <ul class="autocomplete-list" id="suggestionsList" role="group" aria-label="Предложения"></ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn btn-primary header-search-btn">Найти</button>
+            </form>
+            
+            <!-- Theme Toggle -->
+            <button class="theme-toggle header-theme-toggle" id="themeToggle" aria-label="Переключить тему">
+                <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+            
+            <!-- Mobile Menu Toggle -->
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Меню фильтров">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        
+        <!-- Content Type Filters -->
+        <nav class="content-filters" aria-label="Тип контента">
+            <a href="#" class="filter-link active" data-type="all">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                Всё
+            </a>
+            <a href="#" class="filter-link" data-type="images">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                    <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                    <polyline points="21 15 16 10 5 21"></polyline>
+                </svg>
+                Картинки
+            </a>
+            <a href="#" class="filter-link" data-type="videos">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                    <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                </svg>
+                Видео
+            </a>
+            <a href="#" class="filter-link" data-type="news">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"></path>
+                    <path d="M18 14h-8"></path>
+                    <path d="M15 18h-5"></path>
+                    <path d="M10 6h8v4h-8V6Z"></path>
+                </svg>
+                Новости
+            </a>
+            <a href="#" class="filter-link" data-type="maps">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon>
+                    <line x1="8" y1="2" x2="8" y2="18"></line>
+                    <line x1="16" y1="6" x2="16" y2="22"></line>
+                </svg>
+                Карты
+            </a>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="results-main">
+        <!-- Sidebar Filters -->
+        <aside class="filters-sidebar" id="filtersSidebar">
+            <div class="sidebar-header">
+                <h3>Фильтры</h3>
+                <button class="close-sidebar-btn" id="closeSidebarBtn" aria-label="Закрыть фильтры">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="filter-group">
+                <h4 class="filter-group-title">Время</h4>
+                <ul class="filter-options" role="radiogroup" aria-label="Фильтр по времени">
+                    <li>
+                        <button class="filter-option active" data-time="any" role="radio" aria-checked="true">Любое время</button>
+                    </li>
+                    <li>
+                        <button class="filter-option" data-time="hour" role="radio" aria-checked="false">За последний час</button>
+                    </li>
+                    <li>
+                        <button class="filter-option" data-time="day" role="radio" aria-checked="false">За 24 часа</button>
+                    </li>
+                    <li>
+                        <button class="filter-option" data-time="week" role="radio" aria-checked="false">За неделю</button>
+                    </li>
+                    <li>
+                        <button class="filter-option" data-time="month" role="radio" aria-checked="false">За месяц</button>
+                    </li>
+                    <li>
+                        <button class="filter-option" data-time="year" role="radio" aria-checked="false">За год</button>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Results Section -->
+        <section class="results-section">
+            <!-- Results Info -->
+            <div class="results-info" id="resultsInfo">
+                <!-- Populated by JavaScript -->
+            </div>
+            
+            <!-- Loading Indicator -->
+            <div class="loading-indicator" id="loadingIndicator" hidden>
+                <div class="loading-spinner"></div>
+                <p>Поиск...</p>
+            </div>
+            
+            <!-- Results List -->
+            <div class="results-list" id="resultsList" role="list">
+                <!-- Populated by JavaScript -->
+            </div>
+            
+            <!-- Pagination -->
+            <nav class="pagination" id="pagination" aria-label="Страницы результатов">
+                <!-- Populated by JavaScript -->
+            </nav>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer results-footer">
+        <div class="footer-bottom">
+            <div class="footer-links">
+                <a href="#">О Диняндкс</a>
+                <a href="#">Реклама</a>
+                <a href="#">Бизнес</a>
+            </div>
+            <div class="footer-links">
+                <a href="#">Конфиденциальность</a>
+                <a href="#">Условия</a>
+                <a href="#">Настройки</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Voice Search Modal -->
+    <div class="voice-modal" id="voiceModal" hidden>
+        <div class="voice-modal-content">
+            <div class="voice-animation" id="voiceAnimation">
+                <div class="voice-circle"></div>
+                <div class="voice-circle"></div>
+                <div class="voice-circle"></div>
+            </div>
+            <p class="voice-text" id="voiceText">Слушаю...</p>
+            <button type="button" class="voice-close-btn" id="voiceCloseBtn" aria-label="Закрыть">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
